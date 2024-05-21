@@ -26,11 +26,9 @@ import ru.nikitin.kafka.service.DataSenderKafka;
 public class ProducerConfig {
 
     public final String topicName;
-//    public final String topicDltName;
 
-    public ProducerConfig(@Value("${app.kafka.topic}") String topicName/*, @Value("${app.kafka.dlt}") String topicDltName*/) {
+    public ProducerConfig(@Value("${app.kafka.topic}") String topicName) {
         this.topicName = topicName;
-//        this.topicDltName = topicDltName;
     }
 
     @Bean
@@ -73,9 +71,4 @@ public class ProducerConfig {
                 topic.name(),
                 kafkaTemplate);
     }
-//
-//    @Bean
-//    public NewTopic dlt() {
-//        return new NewTopic(topicDltName, 1, (short) 1);
-//    }
 }

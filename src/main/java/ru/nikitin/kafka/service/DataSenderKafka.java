@@ -3,12 +3,8 @@ package ru.nikitin.kafka.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import ru.nikitin.kafka.api.DataSender;
-import ru.nikitin.kafka.model.Metric;
 import ru.nikitin.kafka.model.MetricValue;
 import ru.nikitin.kafka.model.Metrics;
-import ru.nikitin.kafka.model.TypeMetrics;
-
-import java.util.List;
 
 
 @Slf4j
