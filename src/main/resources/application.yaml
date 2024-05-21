@@ -1,0 +1,12 @@
+app:
+  kafka:
+#    dlt: "dlt-topic"
+    topic:  "metric-topic"
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: "localhost:9092"
+      client-id: "metrics-producer"
+server:
+  port: 8081
