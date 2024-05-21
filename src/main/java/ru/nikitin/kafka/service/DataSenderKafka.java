@@ -5,7 +5,10 @@ import org.springframework.kafka.core.KafkaTemplate;
 import ru.nikitin.kafka.api.DataSender;
 import ru.nikitin.kafka.model.Metric;
 import ru.nikitin.kafka.model.MetricValue;
+import ru.nikitin.kafka.model.Metrics;
 import ru.nikitin.kafka.model.TypeMetrics;
+
+import java.util.List;
 
 
 @Slf4j
@@ -23,14 +26,14 @@ public class DataSenderKafka implements DataSender {
     }
 
     @Override
-    public void send(Metric value, TypeMetrics type) {
+    public void send(Metrics request) {
         try {
-            log.info("value:{}", value);
-            MetricValue metric = new MetricValue(type.getName(), value.key(), value.value());
-            log.info("metric ={}", metric);
-            template.send(topic, metric);
+            for (MetricValue value : request.metrics()) {
+                log.info("metric ={}", value);
+                template.send(topic, value);
+            }
         } catch (Exception ex) {
-            log.error("send error, value:{}", value, ex);
+            log.error("send error, value:{}", request, ex);
         }
     }
 }
